@@ -48,6 +48,6 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add workflows/index.json modules/index.json
-          git commit -m "chore: auto-update index files [skip ci]"
+          git add workflows/*.json modules/*.json
+          git commit -m "chore: auto-update index and workflow files [skip ci]"
           git push
