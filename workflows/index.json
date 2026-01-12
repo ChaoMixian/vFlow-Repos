@@ -1,7 +1,7 @@
 {
   "version": "1.0",
-  "last_updated": "2026-01-11T21:25:52.132871",
-  "total_count": 1,
+  "last_updated": "2026-01-12T18:34:12.151098",
+  "total_count": 2,
   "workflows": [
     {
       "id": "hello-vflow",
@@ -19,6 +19,22 @@
       "filename": "hello-vflow.json",
       "download_url": "https://raw.githubusercontent.com/ChaoMixian/vFlow-Repos/main/workflows/hello-vflow.json",
       "local_path": "workflows/hello-vflow.json"
+    },
+    {
+      "id": "share-photo-ocr",
+      "name": "分享图片OCR",
+      "description": "当通过分享功能接收到图片时，自动对图片中的文字进行OCR识别，并将识别结果展示出来。",
+      "author": "ChaoMixian",
+      "version": "1.0.0",
+      "vFlowLevel": 1,
+      "homepage": "https://github.com/ChaoMixian",
+      "tags": [
+        "OCR"
+      ],
+      "updated_at": "2026-01-13",
+      "filename": "share-photo-ocr.json",
+      "download_url": "https://raw.githubusercontent.com/ChaoMixian/vFlow-Repos/main/workflows/share-photo-ocr.json",
+      "local_path": "workflows/share-photo-ocr.json"
     }
   ]
 }
