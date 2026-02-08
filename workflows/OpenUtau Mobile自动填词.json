@@ -1,0 +1,420 @@
+{
+  "_meta": {
+    "id": "oum-auto-edit-lyrics",
+    "name": "OpenUtau-Mobile-自动填词",
+    "version": "1.0.0",
+    "vFlowLevel": 1,
+    "description": "可以给OpenUtau-Mobile自动填词",
+    "author": "Polar_Cat",
+    "homepage": "https://github.com/ChaoMixian",
+    "tags": [
+      "自动化"
+    ],
+    "updated_at": "2026-02-23"
+  },
+  "folder": {
+    "createdAt": 1770537390910,
+    "id": "c356a0c5-2207-4202-a89d-6ffcf91a2bda",
+    "name": "OpenUtau Mobile自动填词 (导入)"
+  },
+  "workflows": [
+    {
+      "folderId": "c356a0c5-2207-4202-a89d-6ffcf91a2bda",
+      "id": "7442307e-2cee-416d-ad78-017cc640b514",
+      "isEnabled": false,
+      "isFavorite": true,
+      "name": "罗马音模式",
+      "order": 0,
+      "steps": [
+        {
+          "id": "79811658-d8d9-4e33-b50a-f8e70af2655a",
+          "indentationLevel": 0,
+          "moduleId": "vflow.trigger.manual",
+          "parameters": {}
+        },
+        {
+          "id": "75a7524f-8bed-443a-865b-34c8e459aaf3",
+          "indentationLevel": 0,
+          "moduleId": "vflow.variable.create",
+          "parameters": {
+            "variableName": "歌词",
+            "type": "文本",
+            "value": "在 这里 输入歌 词",
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "ffad239a-734e-4288-b42f-fa021ae3efba",
+          "indentationLevel": 0,
+          "moduleId": "vflow.data.comment",
+          "parameters": {
+            "content": "请在上方变量的文本值处输入要填的歌词",
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "63f51e4a-deaa-4cdd-b33e-fec3762748d6",
+          "indentationLevel": 0,
+          "moduleId": "vflow.variable.create",
+          "parameters": {
+            "variableName": "i",
+            "type": "数字",
+            "value": "-1",
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "f9e46aba-fcb7-40be-bae0-67799ff4e6f9",
+          "indentationLevel": 0,
+          "moduleId": "vflow.variable.create",
+          "parameters": {
+            "variableName": "正则表达式",
+            "type": "文本",
+            "value": "^(?:[^,]*,){[[i]]}([^,]*)",
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "e6cb8594-ff2f-4229-9084-76cfc45fde77",
+          "indentationLevel": 0,
+          "moduleId": "vflow.data.text_split",
+          "parameters": {
+            "text": "[[歌词]]",
+            "delimiter": " ",
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "6b037c84-9e6f-4a8c-b057-1ec8763a4d96",
+          "indentationLevel": 0,
+          "moduleId": "vflow.logic.loop.start",
+          "parameters": {
+            "count": "{{e6cb8594-ff2f-4229-9084-76cfc45fde77.result.count}}",
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "25f01f1d-2ba5-4f3f-959c-47e8c3cb7608",
+          "indentationLevel": 1,
+          "moduleId": "vflow.data.calculation",
+          "parameters": {
+            "operand1": "[[i]]",
+            "operator": "+",
+            "operand2": "1",
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "6d669e44-34f9-4e1d-8cbc-cbd259a2bfa0",
+          "indentationLevel": 1,
+          "moduleId": "vflow.variable.modify",
+          "parameters": {
+            "variable": "[[i]]",
+            "newValue": "{{25f01f1d-2ba5-4f3f-959c-47e8c3cb7608.result}}",
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "c8725948-b4ef-4c88-811e-8c368cd92c72",
+          "indentationLevel": 1,
+          "moduleId": "vflow.variable.modify",
+          "parameters": {
+            "variable": "[[正则表达式]]",
+            "newValue": "^(?:[^,]*,){[[i]]}([^,]*)",
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "f1a9b1c4-1ac6-47e7-b1d7-ab2bfea5771f",
+          "indentationLevel": 1,
+          "moduleId": "vflow.data.text_processing",
+          "parameters": {
+            "operation": "正则提取",
+            "join_prefix": "",
+            "join_delimiter": ",",
+            "join_suffix": "",
+            "source_text": "{{e6cb8594-ff2f-4229-9084-76cfc45fde77.result}}",
+            "split_delimiter": ",",
+            "replace_from": "",
+            "replace_to": "",
+            "regex_pattern": "[[正则表达式]]",
+            "regex_group": 0,
+            "join_list": "",
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "1d0b646c-2236-4026-a697-04e5903f03df",
+          "indentationLevel": 1,
+          "moduleId": "vflow.data.text_processing",
+          "parameters": {
+            "operation": "正则提取",
+            "join_prefix": "",
+            "join_delimiter": ",",
+            "join_suffix": "",
+            "source_text": "{{f1a9b1c4-1ac6-47e7-b1d7-ab2bfea5771f.result_list}}",
+            "split_delimiter": ",",
+            "replace_from": "",
+            "replace_to": "",
+            "regex_pattern": "[^,]+$",
+            "regex_group": 0,
+            "join_list": "",
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "38e3b7aa-6aff-4ea6-aec0-b55716c94dbf",
+          "indentationLevel": 1,
+          "moduleId": "vflow.interaction.input_text",
+          "parameters": {
+            "text": "{{1d0b646c-2236-4026-a697-04e5903f03df.result_list}}",
+            "mode": "自动",
+            "show_advanced": false,
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "83f96000-2e71-4873-bc9c-125615330073",
+          "indentationLevel": 1,
+          "moduleId": "vflow.interaction.find_element",
+          "parameters": {
+            "text": "下一个",
+            "text_match_mode": "完全匹配",
+            "view_id": "",
+            "id_match_mode": "包含",
+            "class_name": "android.widget.Button",
+            "class_match_mode": "完全匹配",
+            "search_region": "",
+            "only_leaf_nodes": false,
+            "clickable": "",
+            "enabled": "",
+            "checkable": "",
+            "checked": "",
+            "editable": "",
+            "focusable": "",
+            "scrollable": "",
+            "depth_limit": 50,
+            "result_selection": "第一个",
+            "__error_policy": "RETRY",
+            "__retry_count": 3,
+            "__retry_interval": 1000
+          }
+        },
+        {
+          "id": "88dd9d4c-2e38-4a3b-a2d6-72901078759e",
+          "indentationLevel": 1,
+          "moduleId": "vflow.device.click",
+          "parameters": {
+            "target": "{{83f96000-2e71-4873-bc9c-125615330073.element}}",
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "697eba1f-06b3-4742-bfa1-779de4ba38fe",
+          "indentationLevel": 0,
+          "moduleId": "vflow.logic.loop.end",
+          "parameters": {}
+        }
+      ],
+      "wasEnabledBeforePermissionsLost": false
+    },
+    {
+      "folderId": "c356a0c5-2207-4202-a89d-6ffcf91a2bda",
+      "id": "2ab1c707-317e-45ca-8639-2ec02ca13e51",
+      "isEnabled": true,
+      "isFavorite": true,
+      "name": "假名模式",
+      "order": 0,
+      "steps": [
+        {
+          "id": "ffccf4a4-550a-4ec0-b26a-f6f1aa222903",
+          "indentationLevel": 0,
+          "moduleId": "vflow.trigger.manual",
+          "parameters": {}
+        },
+        {
+          "id": "6b87ea97-3b8a-433f-9a66-7bc800720636",
+          "indentationLevel": 0,
+          "moduleId": "vflow.variable.create",
+          "parameters": {
+            "variableName": "歌词",
+            "type": "文本",
+            "value": "在这里输入歌词",
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "a747f460-4438-47a5-906c-23e6bb9e6fe7",
+          "indentationLevel": 0,
+          "moduleId": "vflow.data.comment",
+          "parameters": {
+            "content": "请在上方变量的文本值处输入要填的歌词",
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "cab6acaa-17e3-4d5c-9bcb-647ae62f4998",
+          "indentationLevel": 0,
+          "moduleId": "vflow.variable.create",
+          "parameters": {
+            "variableName": "i",
+            "type": "数字",
+            "value": "-1",
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "beb6a028-2a06-4f47-be0b-0468a9439093",
+          "indentationLevel": 0,
+          "moduleId": "vflow.variable.create",
+          "parameters": {
+            "variableName": "正则表达式",
+            "type": "文本",
+            "value": "^(?:[^,]*,){[[i]]}([^,]*)",
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "e8d162dc-d90d-45ad-be16-8227faa836f4",
+          "indentationLevel": 0,
+          "moduleId": "vflow.data.text_split",
+          "parameters": {
+            "text": "{{6b87ea97-3b8a-433f-9a66-7bc800720636.variable.removeSpaces}}",
+            "delimiter": "",
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "7b409bd0-3440-4a81-bd6d-89d1546b97ac",
+          "indentationLevel": 0,
+          "moduleId": "vflow.logic.loop.start",
+          "parameters": {
+            "count": "{{e8d162dc-d90d-45ad-be16-8227faa836f4.result.count}}",
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "c3894087-4370-4023-9440-239d444e2a0a",
+          "indentationLevel": 1,
+          "moduleId": "vflow.data.calculation",
+          "parameters": {
+            "operand1": "[[i]]",
+            "operator": "+",
+            "operand2": "1",
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "8583372f-ac0d-427d-a394-30b0ce5f8e28",
+          "indentationLevel": 1,
+          "moduleId": "vflow.variable.modify",
+          "parameters": {
+            "variable": "[[i]]",
+            "newValue": "{{c3894087-4370-4023-9440-239d444e2a0a.result}}",
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "008e0397-14f0-487a-9135-369484fc7264",
+          "indentationLevel": 1,
+          "moduleId": "vflow.variable.modify",
+          "parameters": {
+            "variable": "[[正则表达式]]",
+            "newValue": "^(?:[^,]*,){[[i]]}([^,]*)",
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "a3be8e12-9586-4c2d-b439-35477f9bc35e",
+          "indentationLevel": 1,
+          "moduleId": "vflow.data.text_processing",
+          "parameters": {
+            "operation": "正则提取",
+            "join_prefix": "",
+            "join_delimiter": ",",
+            "join_suffix": "",
+            "source_text": "{{e8d162dc-d90d-45ad-be16-8227faa836f4.result}}",
+            "split_delimiter": ",",
+            "replace_from": "",
+            "replace_to": "",
+            "regex_pattern": "[[正则表达式]]",
+            "regex_group": 0,
+            "join_list": "",
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "5be72b69-a992-4d88-908b-6eb48afbc815",
+          "indentationLevel": 1,
+          "moduleId": "vflow.data.text_processing",
+          "parameters": {
+            "operation": "正则提取",
+            "join_prefix": "",
+            "join_delimiter": ",",
+            "join_suffix": "",
+            "source_text": "{{a3be8e12-9586-4c2d-b439-35477f9bc35e.result_list}}",
+            "split_delimiter": ",",
+            "replace_from": "",
+            "replace_to": "",
+            "regex_pattern": "[^,]+$",
+            "regex_group": 0,
+            "join_list": "",
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "9fc32548-8354-49aa-9af3-1f483331de1f",
+          "indentationLevel": 1,
+          "moduleId": "vflow.interaction.input_text",
+          "parameters": {
+            "text": "{{5be72b69-a992-4d88-908b-6eb48afbc815.result_list}}",
+            "mode": "自动",
+            "show_advanced": false,
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "8e42eb1a-e2e2-4f9d-b8e8-cb16d0bb8aac",
+          "indentationLevel": 1,
+          "moduleId": "vflow.interaction.find_element",
+          "parameters": {
+            "text": "下一个",
+            "text_match_mode": "包含",
+            "view_id": "",
+            "id_match_mode": "包含",
+            "class_name": "android.widget.Button",
+            "class_match_mode": "完全匹配",
+            "search_region": "",
+            "only_leaf_nodes": false,
+            "clickable": "",
+            "enabled": "",
+            "checkable": "",
+            "checked": "",
+            "editable": "",
+            "focusable": "",
+            "scrollable": "",
+            "depth_limit": 50,
+            "result_selection": "第一个",
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "18ac947e-b983-44fc-8193-a66b9c188fcf",
+          "indentationLevel": 1,
+          "moduleId": "vflow.device.click",
+          "parameters": {
+            "target": "{{8e42eb1a-e2e2-4f9d-b8e8-cb16d0bb8aac.element}}",
+            "__error_policy": "STOP"
+          }
+        },
+        {
+          "id": "42f0445f-e4d5-47d4-b9b3-c1288d0066dd",
+          "indentationLevel": 0,
+          "moduleId": "vflow.logic.loop.end",
+          "parameters": {}
+        }
+      ],
+      "wasEnabledBeforePermissionsLost": false
+    }
+  ]
+}
