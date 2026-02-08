@@ -416,5 +416,8 @@
       ],
       "wasEnabledBeforePermissionsLost": false
     }
-  ]
+  ],
+  "isEnabled": false,
+  "isFavorite": false,
+  "wasEnabledBeforePermissionsLost": false
 }

@@ -1,7 +1,7 @@
 {
   "version": "1.0",
-  "last_updated": "2026-02-03T14:07:55.394322",
-  "total_count": 4,
+  "last_updated": "2026-02-08T10:23:13.374491",
+  "total_count": 5,
   "workflows": [
     {
       "id": "gkd-example",
@@ -16,7 +16,7 @@
         "广告",
         "AD"
       ],
-      "updated_at": "2026-02-23",
+      "updated_at": "2026-01-23",
       "filename": "gkd-example.json",
       "download_url": "https://raw.githubusercontent.com/ChaoMixian/vFlow-Repos/main/workflows/gkd-example.json",
       "local_path": "workflows/gkd-example.json"
@@ -54,6 +54,22 @@
       "filename": "ithome-signin.json",
       "download_url": "https://raw.githubusercontent.com/ChaoMixian/vFlow-Repos/main/workflows/ithome-signin.json",
       "local_path": "workflows/ithome-signin.json"
+    },
+    {
+      "id": "oum-auto-edit-lyrics",
+      "name": "OpenUtau-Mobile-自动填词",
+      "description": "可以给OpenUtau-Mobile自动填词",
+      "author": "Polar_Cat",
+      "version": "1.0.0",
+      "vFlowLevel": 1,
+      "homepage": "https://github.com/ChaoMixian",
+      "tags": [
+        "自动化"
+      ],
+      "updated_at": "2026-02-23",
+      "filename": "oum-auto-edit-lyrics.json",
+      "download_url": "https://raw.githubusercontent.com/ChaoMixian/vFlow-Repos/main/workflows/oum-auto-edit-lyrics.json",
+      "local_path": "workflows/oum-auto-edit-lyrics.json"
     },
     {
       "id": "share-photo-ocr",
