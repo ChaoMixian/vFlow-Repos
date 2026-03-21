@@ -1,0 +1,53 @@
+{
+  "_meta": {
+    "id": "729e4cb9-125a-44d3-beae-6281ba9e3d72",
+    "name": "一加自动启用旁路充电",
+    "version": "1.0.0",
+    "vFlowLevel": 1,
+    "description": "",
+    "author": "",
+    "homepage": "",
+    "tags": [],
+    "updated_at": "2026-03-21",
+    "modified_at": 1774102516953
+  },
+  "id": "729e4cb9-125a-44d3-beae-6281ba9e3d72",
+  "name": "一加自动启用旁路充电",
+  "steps": [
+    {
+      "id": "cc8e51c3-9d5a-4764-8051-91e257de9d10",
+      "indentationLevel": 0,
+      "moduleId": "vflow.trigger.power",
+      "parameters": {
+        "power_state": "connected",
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "e09fcfc7-789f-452b-b3cc-69c3ce8cbc8d",
+      "indentationLevel": 0,
+      "moduleId": "vflow.shizuku.shell_command",
+      "parameters": {
+        "mode": "Root",
+        "command": "cmd statusbar click-tile com.oplus.battery/com.oplus.powermanager.fuelgaue.bypasscharge.BypassChargeTile\n",
+        "__error_policy": "STOP"
+      }
+    }
+  ],
+  "isEnabled": true,
+  "triggerConfig": {
+    "power_state": "connected",
+    "__error_policy": "STOP",
+    "type": "vflow.trigger.power"
+  },
+  "isFavorite": false,
+  "wasEnabledBeforePermissionsLost": false,
+  "order": 0,
+  "modifiedAt": 1774102516953,
+  "version": "1.0.0",
+  "vFlowLevel": 1,
+  "description": "",
+  "author": "",
+  "homepage": "",
+  "tags": []
+}

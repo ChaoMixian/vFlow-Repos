@@ -1,0 +1,126 @@
+{
+  "_meta": {
+    "id": "0d8a84fd-561b-4553-894f-09c51bd0ad99",
+    "name": "发送早安",
+    "version": "1.0.0",
+    "vFlowLevel": 1,
+    "description": "",
+    "author": "",
+    "homepage": "",
+    "tags": [],
+    "updated_at": "2026-03-21",
+    "modified_at": 1774102550101
+  },
+  "id": "0d8a84fd-561b-4553-894f-09c51bd0ad99",
+  "name": "发送早安",
+  "steps": [
+    {
+      "id": "step_0_trigger",
+      "indentationLevel": 0,
+      "moduleId": "vflow.trigger.time",
+      "parameters": {
+        "time": "08:00",
+        "days": []
+      }
+    },
+    {
+      "id": "step_1_wake",
+      "indentationLevel": 0,
+      "moduleId": "vflow.core.wake_screen",
+      "parameters": {}
+    },
+    {
+      "id": "17f41d04-adef-4026-a935-4abe8d0fcb25",
+      "indentationLevel": 0,
+      "moduleId": "vflow.system.lua",
+      "parameters": {
+        "script": "-- ================= 配置区 =================\\nlocal start_date = {year = 2024, month = 3, day = 26}\\nlocal birthday1 = {month = 11, day = 23}\\nlocal birthday2 = {month = 6, day = 26}\\n\\n-- ================= 工具函数 =================\\nlocal function get_total_days(y, m, d)\\n    local start_time = os.time({year = y, month = m, day = d, hour = 0, min = 0, sec = 0})\\n    local now_t = os.date(\"*t\")\\n    local current_zero = os.time({year = now_t.year, month = now_t.month, day = now_t.day, hour = 0})\\n    return math.floor((current_zero - start_time) / 86400)\\nend\\n\\nlocal function get_countdown(m, d)\\n    local now_t = os.date(\"*t\")\\n    local today_zero = os.time({year = now_t.year, month = now_t.month, day = now_t.day, hour = 0})\\n    local target_time = os.time({year = now_t.year, month = m, day = d, hour = 0})\\n    if target_time < today_zero then\\n        target_time = os.time({year = now_t.year + 1, month = m, day = d, hour = 0})\\n    end\\n    return math.ceil((target_time - today_zero) / 86400)\\nend\\n\\n-- ================= 核心计算 =================\\nlocal total_days = get_total_days(start_date.year, start_date.month, start_date.day)\\n\\n-- 1. 恋爱天数：#年#天\\nlocal years = math.floor(total_days / 365)\\nlocal remaining_days = total_days % 365\\nlocal love_display = (years > 0) and (years .. \"年\" .. remaining_days .. \"天\") or (total_days .. \"天\")\\n\\n-- 2. 分数逻辑 (2.0 到 23.0)\\nlocal idx = total_days % 43\\nlocal denom = 2 + (idx * 0.5)\\nlocal denom_str = (denom % 1 == 0) and string.format(\"%d\", denom) or string.format(\"%.1f\", denom)\\n\\n-- 【强行截断百分比】保留两位小数，不依赖 string.format\\nlocal raw_percent = 100 / denom\\nlocal percent_val = math.floor(raw_percent * 100 + 0.5) / 100\\n\\n-- 3. 平方立方\\nlocal sq = 11 + (total_days % 9)\\nlocal cb = 2 + (total_days % 15)\\n\\n-- 4. 生日计算\\nlocal b1 = get_countdown(birthday1.month, birthday1.day)\\nlocal b2 = get_countdown(birthday2.month, birthday2.day)\\n\\n-- ================= 组装报告 =================\\n-- 强制拼接字符串，避免在格式化时出错\\nlocal report = \"早安宝宝！☀️\\\\n\"\\nreport = report .. \"📅 今天是：\" .. os.date(\"%Y-%m-%d\") .. \"\\\\n\"\\nreport = report .. \"------------------\\\\n\"\\nreport = report .. \"💡 今日速记：1/\" .. denom_str .. \" = \" .. percent_val .. \"%\\\\n\"\\nreport = report .. \"📐 今日算力：\" .. sq .. \"²=\" .. (sq*sq) .. \" | \" .. cb .. \"³=\" .. (cb*cb*cb) .. \"\\\\n\"\\nreport = report .. \"------------------\\\\n\"\\nreport = report .. \"❤️ 恋爱天数：\" .. love_display .. \"\\\\n\"\\nreport = report .. \"🎂 生日：\" .. b1 .. \"天 | 生日：\" .. b2 .. \"天\\\\n\"\\nreport = report .. \"👆🏻 记得吃早饭哦！\"\\n\\nreturn { result = report }",
+        "inputs": {},
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "936f30f4-e3e0-4825-8850-82ebdcc87f85",
+      "indentationLevel": 0,
+      "moduleId": "vflow.device.delay",
+      "parameters": {
+        "duration": 500.0,
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "5da17a49-8e61-4737-869d-7ec8be2db09f",
+      "indentationLevel": 0,
+      "moduleId": "vflow.core.shell_command",
+      "parameters": {
+        "mode": "自动",
+        "command": "am start -n com.tencent.mm/.ui.chatting.ChattingUI --es Chat_User \"输入微信id wxid开头的\"\\n",
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "5c7978fc-aa94-4c61-9d14-23bd7ce3422a",
+      "indentationLevel": 0,
+      "moduleId": "vflow.device.delay",
+      "parameters": {
+        "duration": 1000.0,
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "ac950e7b-a2b9-4494-aa9c-9073db9a8cfa",
+      "indentationLevel": 0,
+      "moduleId": "vflow.device.click",
+      "parameters": {
+        "target": "com.tencent.mm:id/c32",
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "step_6_input_text",
+      "indentationLevel": 0,
+      "moduleId": "vflow.interaction.input_text",
+      "parameters": {
+        "text": "{{17f41d04-adef-4026-a935-4abe8d0fcb25.outputs}}",
+        "mode": "无障碍",
+        "action_after": "无操作",
+        "show_advanced": true,
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "265c7849-726a-4361-b267-34a75dd434d8",
+      "indentationLevel": 0,
+      "moduleId": "vflow.device.delay",
+      "parameters": {
+        "duration": 500.0,
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "75038e7c-78d5-4297-9c61-41bb4f258ac4",
+      "indentationLevel": 0,
+      "moduleId": "vflow.device.click",
+      "parameters": {
+        "target": "com.tencent.mm:id/ca2",
+        "__error_policy": "STOP"
+      }
+    }
+  ],
+  "isEnabled": true,
+  "triggerConfig": {
+    "time": "08:00",
+    "days": [],
+    "type": "vflow.trigger.time"
+  },
+  "isFavorite": false,
+  "wasEnabledBeforePermissionsLost": false,
+  "order": 0,
+  "modifiedAt": 1774102550101,
+  "version": "1.0.0",
+  "vFlowLevel": 1,
+  "description": "",
+  "author": "",
+  "homepage": "",
+  "tags": []
+}
