@@ -1,7 +1,7 @@
 {
   "version": "1.0",
-  "last_updated": "2026-02-08T10:23:13.374491",
-  "total_count": 5,
+  "last_updated": "2026-04-09T00:29:56.946468",
+  "total_count": 7,
   "workflows": [
     {
       "id": "gkd-example",
@@ -56,6 +56,24 @@
       "local_path": "workflows/ithome-signin.json"
     },
     {
+      "id": "oneplus-bypass-charge",
+      "name": "一加自动启用旁路充电",
+      "description": "充电时自动通过 Shizuku 启用一加旁路充电",
+      "author": "Artifical0",
+      "version": "1.0.0",
+      "vFlowLevel": 1,
+      "homepage": "",
+      "tags": [
+        "一加",
+        "旁路充电",
+        "充电"
+      ],
+      "updated_at": "2026-03-21",
+      "filename": "oneplus-bypass-charge.json",
+      "download_url": "https://raw.githubusercontent.com/ChaoMixian/vFlow-Repos/main/workflows/oneplus-bypass-charge.json",
+      "local_path": "workflows/oneplus-bypass-charge.json"
+    },
+    {
       "id": "oum-auto-edit-lyrics",
       "name": "OpenUtau-Mobile-自动填词",
       "description": "可以给OpenUtau-Mobile自动填词",
@@ -86,6 +104,24 @@
       "filename": "share-photo-ocr.json",
       "download_url": "https://raw.githubusercontent.com/ChaoMixian/vFlow-Repos/main/workflows/share-photo-ocr.json",
       "local_path": "workflows/share-photo-ocr.json"
+    },
+    {
+      "id": "wechat-send-goodmorning",
+      "name": "发送早安",
+      "description": "每天定时发送早安消息给微信好友，包含恋爱天数、生日倒计时等信息",
+      "author": "Artifical0",
+      "version": "1.0.0",
+      "vFlowLevel": 1,
+      "homepage": "",
+      "tags": [
+        "微信",
+        "定时",
+        "早安"
+      ],
+      "updated_at": "2026-03-21",
+      "filename": "wechat-send-goodmorning.json",
+      "download_url": "https://raw.githubusercontent.com/ChaoMixian/vFlow-Repos/main/workflows/wechat-send-goodmorning.json",
+      "local_path": "workflows/wechat-send-goodmorning.json"
     }
   ]
 }
