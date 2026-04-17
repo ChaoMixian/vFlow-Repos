@@ -1,0 +1,250 @@
+{
+  "_meta": {
+    "id": "wzry-download-blocker",
+    "name": "王者下载拦截",
+    "version": "1.0.0",
+    "vFlowLevel": 1,
+    "description": "在王者荣耀启动时执行下载资源拦截脚本，并自动处理高性能模式切换。",
+    "author": "想不出名字啊喂",
+    "homepage": "",
+    "tags": [
+      "王者荣耀",
+      "资源拦截",
+      "Shizuku",
+      "游戏"
+    ],
+    "updated_at": "2026-04-07"
+  },
+  "id": "b889cc30-7c21-48f9-87f5-b0b2c60a1c68",
+  "name": "王者下载拦截",
+  "triggers": [
+    {
+      "id": "5f0479ac-8eee-4d6a-bb87-893d7edfa60c",
+      "indentationLevel": 0,
+      "moduleId": "vflow.trigger.app_start",
+      "parameters": {
+        "event": "打开时",
+        "packageNames": [
+          "com.tencent.tmgp.sgame"
+        ],
+        "__error_policy": "STOP"
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "5c52c194-4a98-49bd-8b09-01bffa48dd64",
+      "indentationLevel": 0,
+      "moduleId": "vflow.data.comment",
+      "parameters": {
+        "content": "王者荣耀资源拦截脚本 - 全安卓兼容版\n\n\n一、脚本核心功能\n\n1. 适配ColorOS系统，游戏启动后自动开启系统高性能模式，提升游戏运行流畅度\n\n2. 游戏运行期间，实时监控游戏的资源请求文件，自动清空拦截冗余的外部资源加载，稳定游戏体验\n\n3. 全安卓版本兼容\n   自动探测不同安卓版本的存储路径（支持 Android 4.4 - Android 14+），无需手动配置路径\n\n4. 智能休眠策略\n   根据空闲时长自动调整检测频率，兼顾拦截响应速度和设备续航\n   - 快速模式：检测到文件后30次循环内快速检查\n   - 普通模式：逐步增加检测间隔\n   - 深度休眠：空闲超过10分钟触发，大幅省电\n\n5. 游戏正常关闭后，脚本自动退出，同时关闭高性能模式，恢复电池均匀模式\n\n6. 脚本运行失败、异常退出时，也会自动同步关闭高性能模式，避免持续高功耗耗电\n\n7. 全程自动化运行，无需手动干预，兼顾游戏性能与设备续航\n\n8. 防重复运行机制\n   内置锁文件管理，彻底避免脚本多实例冲突\n\n9. 完整运行统计报告\n   游戏关闭后自动生成详细的运行日志，包含拦截效果统计、设备续航优化情况\n\n10. 异常自动处理\n    脚本异常退出时自动清理锁文件，避免影响下次运行\n\n\n二、运行环境说明\n\n1. 适配ColorOS系统，高性能模式为ColorOS系统专属设置项\n\n2. 兼容性\n   支持全Android版本（Android 4.4 - Android 14+）\n\n3. 权限要求\n   无需Root权限，支持Shizuku、Stellar等免Root运行环境\n\n4. 需要授予系统设置修改权限，用于切换ColorOS的高性能/均匀模式\n\n5. 文件权限\n   需要 /sdcard/Download 目录的读写权限（默认都有）\n\n6. 前置条件\n   需要先启动王者荣耀游戏，脚本会自动检测游戏进程\n\n7. 内置防重复运行机制，彻底避免脚本多实例冲突\n\n\n三、核心执行逻辑说明\n\n1. 启动执行逻辑（游戏打开时触发）\n   脚本启动后，自动执行ColorOS高性能模式开启命令，同时输出\"高性能模式已开启\"的运行提示\n   - 检查磁盘空间是否充足\n   - 清理无效锁文件\n   - 检测游戏进程是否在运行\n   - 自动探测目标文件路径\n\n2. 核心拦截逻辑（游戏运行中持续执行）\n   循环检测游戏的资源列表文件，检测到非空的资源文件时立即清空拦截；根据空闲时长自动调整检测频率，兼顾拦截响应速度和设备续航\n   - 循环检测游戏的资源列表文件\n   - 检测到非空的资源文件时立即清空\n   - 支持3种清空方式（truncate/printf/重定向），确保兼容性\n   - 根据空闲时长自动调整检测频率\n\n3. 正常结束逻辑（游戏关闭时触发）\n   游戏关闭后，脚本自动执行ColorOS高性能模式关闭命令，恢复电池均匀模式；同时将\"电池已恢复均匀模式\"的提示，合并到最终的运行结果日志中\n   - 游戏关闭后自动退出主循环\n   - 生成完整的运行统计报告\n   - 自动删除锁文件\n\n4. 异常退出逻辑（脚本运行失败时触发）\n   脚本启动失败、运行出现异常时，会自动执行ColorOS高性能模式关闭命令，同步关闭高性能模式；同时将\"已同步关闭高性能模式\"的提示，写入错误日志中\n   - 信号处理机制（Ctrl+C/系统杀死）\n   - 自动清理锁文件\n   - 记录错误日志\n\n\n四、核心日志文件详细说明\n\n1. 成功运行日志\n   保存路径：/sdcard/Download/block_success.log\n   生成规则：游戏关闭、脚本正常退出时生成，覆盖上一次的日志内容\n   内容说明：\n     - 运行状态和运行周期\n     - 总运行时长\n     - 📊 拦截效果统计（检测次数/成功次数/异常次数）\n     - 🔋 设备续航优化情况（最长空闲时长/深度休眠次数）\n     - 📋 最终运行结果说明\n     - 同时包含ColorOS电池模式恢复的状态提示\n\n2. 错误日志\n   保存路径：/sdcard/Download/block_error.log\n   生成规则：脚本启动失败、运行出现异常时生成，覆盖上一次的日志内容\n   内容说明：精简记录错误原因，同时包含ColorOS高性能模式同步关闭的状态提示，方便快速定位问题，可直接用于vFlow的通知展示\n\n3. 临时锁文件\n   保存路径：/sdcard/Download/block_lock_com.tencent.tmgp.sgame.tmp\n   作用说明：用于防止脚本重复启动\n   清理机制：脚本正常退出或异常结束时都会自动删除\n   属性：不属于日志文件\n\n\n五、配置说明（新手建议保持默认）\n\n配置区参数说明\n\nPKG\n  默认值：com.tencent.tmgp.sgame\n  说明：游戏包名（如果不是王者荣耀，可修改）\n\nBASE_DIR\n  默认值：/sdcard/Download\n  说明：日志文件存储位置\n\nmin_kb\n  默认值：100\n  说明：最小磁盘空间要求（KB）\n\nfast_remain\n  默认值：30\n  说明：快速模式持续次数\n\nsleep 0.3\n  默认值：0.3秒\n  说明：快速模式检查间隔\n\nsleep 0.6/1.2/2.4/5\n  默认值：逐步增加\n  说明：普通模式等待时间\n\n\n六、使用说明\n\n1. 默认配置可直接使用，无需修改\n\n2. 自动化软件集成\n   可配合自动化软件使用，打开王者荣耀时自动启动此脚本\n\n3. 拦截失效时调整\n   仅当游戏大版本更新后拦截失效时，按需调整脚本里监控的资源文件路径\n\n4. 若高性能模式切换失效，请检查Shizuku/Stellar是否授予了系统设置的修改权限\n\n5. 本脚本的高性能模式切换逻辑仅适配ColorOS系统，其他Android系统需对应修改系统设置命令\n\n\n七、路径自动探测说明\n\n脚本会自动尝试以下4种常见存储路径，找到正确的为止：\n\n1. /sdcard/Android/data/ - 旧版Android常用\n2. /storage/emulated/0/Android/data/ - 新版Android常用\n3. /mnt/sdcard/Android/data/ - 某些设备的挂载路径\n4. /data/media/0/Android/data/ - 某些定制ROM路径",
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "ef41499a-2835-4e5f-a53f-62247892b12e",
+      "indentationLevel": 0,
+      "moduleId": "vflow.shizuku.shell_command",
+      "parameters": {
+        "mode": "Shizuku",
+        "command": "#!/system/bin/sh\nsettings put system high_performance_mode_on 1\necho \"高性能模式已开启\"\n",
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "43e269e6-f96c-4fb5-9331-51fde547803c",
+      "indentationLevel": 0,
+      "moduleId": "vflow.device.toast",
+      "parameters": {
+        "message": "{{ef41499a-2835-4e5f-a53f-62247892b12e.result}}",
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "dfc59fd3-b701-492f-a4c1-602d92cbceba",
+      "indentationLevel": 0,
+      "moduleId": "vflow.shizuku.shell_command",
+      "parameters": {
+        "mode": "Shizuku",
+        "command": "#!/system/bin/sh\n# ==========================================\n# 王者荣耀资源拦截脚本 - 全安卓兼容版\n# ==========================================\n# 兼容性：Android 4.4 - Android 14+\n# 无需Root，支持Shizuku/Stellar等环境\n#\n# 配置说明：\n# - 如需修改游戏包名，请修改下方 PKG 配置\n# - 如需修改日志存储位置，请修改 BASE_DIR 配置\n# ==========================================\n\n# --- [配置区] 可根据需要修改此处 ---\n# 这里是脚本的核心配置，新手建议保持默认！\n\n# 游戏包名（如果不是王者荣耀，请修改此处）\n# 例如：和平精英改为 \"com.tencent.tmgp.pubgmhd\"\nPKG=\"com.tencent.tmgp.sgame\"\n\n# 日志文件存储位置（默认在下载目录，新手不建议修改）\n# 确保此目录有读写权限\nBASE_DIR=\"/sdcard/Download\"\n\n# 成功日志文件名（记录拦截统计）\nSUCCESS_LOG=\"${BASE_DIR}/block_success.log\"\n\n# 错误日志文件名（记录运行异常）\nERROR_LOG=\"${BASE_DIR}/block_error.log\"\n\n# 锁文件（防止脚本重复运行）\nLOCK_FILE=\"${BASE_DIR}/block_lock_${PKG}.tmp\"\n\n# --- [配置区结束] ---\n\n# ==========================================\n# 功能模块：自动探测目标文件路径\n# 说明：不同安卓版本存储路径不同，此函数会自动找到正确的路径\n# 一般不需要修改，除非游戏更新后路径变更\n# ==========================================\nfind_target_file() {\n    # 尝试路径1：旧版Android常用路径\n    local path1=\"/sdcard/Android/data/$PKG/files/iips_download/ingame/ingame_downloaded_filelist.json\"\n    \n    # 尝试路径2：新版Android常用路径（Android 10+）\n    local path2=\"/storage/emulated/0/Android/data/$PKG/files/iips_download/ingame/ingame_downloaded_filelist.json\"\n    \n    # 尝试路径3：某些设备的挂载路径\n    local path3=\"/mnt/sdcard/Android/data/$PKG/files/iips_download/ingame/ingame_downloaded_filelist.json\"\n    \n    # 尝试路径4：某些定制ROM的路径\n    local path4=\"/data/media/0/Android/data/$PKG/files/iips_download/ingame/ingame_downloaded_filelist.json\"\n    \n    # 依次检查哪个路径存在\n    if [ -f \"$path1\" ]; then\n        echo \"$path1\"\n        return 0\n    fi\n    if [ -f \"$path2\" ]; then\n        echo \"$path2\"\n        return 0\n    fi\n    if [ -f \"$path3\" ]; then\n        echo \"$path3\"\n        return 0\n    fi\n    if [ -f \"$path4\" ]; then\n        echo \"$path4\"\n        return 0\n    fi\n    \n    # 如果都找不到，返回第一个路径作为默认\n    echo \"$path1\"\n    return 1\n}\n\n# ==========================================\n# 执行：调用路径探测函数\n# ==========================================\nFILE=$(find_target_file)\n\n# ==========================================\n# 功能模块：验证目标路径是否有效\n# 说明：如果路径不存在，会记录警告信息\n# ==========================================\n# --- 验证目标路径 ---\nfile_dir=$(dirname \"$FILE\" 2>/dev/null)\nif [ ! -f \"$FILE\" ] && [ ! -d \"$file_dir\" ]; then\n    echo \"警告 目标路径可能不存在：$FILE\" > \"$ERROR_LOG\"\nfi\n\n# ==========================================\n# 功能模块：时间格式化函数\n# 说明：将时间戳转换为可读格式，兼容多种Android环境\n# 一般不需要修改\n# ==========================================\n# --- 时间格式化函数（全Android环境兼容）---\nformat_time() {\n    local ts=$1\n    local out\n    \n    # 方式1：尝试标准date命令\n    if out=$(date -d @\"$ts\" \"+%Y-%m-%d %H:%M:%S\" 2>/dev/null) && [ -n \"$out\" ]; then\n        echo \"$out\"\n        return\n    fi\n    \n    # 方式2：如果有busybox，尝试busybox date\n    if command -v busybox >/dev/null 2>&1; then\n        if out=$(busybox date -D '%s' -d \"$ts\" \"+%Y-%m-%d %H:%M:%S\" 2>/dev/null) && [ -n \"$out\" ]; then\n            echo \"$out\"\n            return\n        fi\n    fi\n    \n    # 方式3：降级到当前时间（兜底方案）\n    if out=$(date \"+%Y-%m-%d %H:%M:%S\" 2>/dev/null) && [ -n \"$out\" ]; then\n        echo \"$out\"\n        return\n    fi\n    \n    # 都不行就直接返回时间戳\n    echo \"($ts)\"\n}\n\n# ==========================================\n# 工具函数：检查命令是否可用\n# ==========================================\n# --- 检查命令是否可用 ---\ncheck_command() {\n    command -v \"$1\" >/dev/null 2>&1\n}\n\n# ==========================================\n# 工具函数：检查磁盘空间\n# 说明：防止磁盘满导致写入失败\n# min_kb 可以根据需要调整最小可用空间（单位：KB）\n# ==========================================\n# --- 检查磁盘空间 ---\ncheck_disk_space() {\n    local dir=\"$1\"\n    local min_kb=100\n    \n    if [ -d \"$dir\" ]; then\n        if command -v df >/dev/null 2>&1; then\n            local avail=$(df -k \"$dir\" 2>/dev/null | awk 'NR==2 {print $4}')\n            if [ -n \"$avail\" ] && [ \"$avail\" -lt \"$min_kb\" ]; then\n                return 1\n            fi\n        fi\n    fi\n    return 0\n}\n\n# ==========================================\n# 初始化：创建基础目录\n# ==========================================\n# --- 启动前置校验 ---\nmkdir -p \"$BASE_DIR\" 2>/dev/null\n\n# ==========================================\n# 检查：磁盘空间是否足够\n# ==========================================\n# --- 检查磁盘空间 ---\nif ! check_disk_space \"$BASE_DIR\"; then\n    echo \"错误 磁盘空间不足\" > \"$ERROR_LOG\"\n    exit 1\nfi\n\n# ==========================================\n# 安全模块：信号处理\n# 说明：脚本被Ctrl+C或系统杀死时，自动清理锁文件\n# 一般不需要修改\n# ==========================================\n# --- 信号处理：异常退出时自动清理锁文件 ---\ncleanup() {\n    rm -f \"$LOCK_FILE\" 2>/dev/null\n}\ntrap cleanup INT TERM EXIT\n\n# ==========================================\n# 环境检查1：检测进程命令\n# 说明：不同设备可能用pidof或pgrep\n# ==========================================\n# 【环境校验 1】检查 pidof 命令（如果没有，用ps替代）\nPIDOF_CMD=\"\"\nif check_command pidof; then\n    PIDOF_CMD=\"pidof\"\nelif check_command pgrep; then\n    PIDOF_CMD=\"pgrep\"\nelse\n    echo \"错误 无法检测进程，需要pidof或pgrep\" > \"$ERROR_LOG\"\n    exit 1\nfi\n\n# ==========================================\n# 环境检查2：清理无效锁文件\n# 说明：防止上次异常退出导致锁文件残留\n# ==========================================\n# 【环境校验 2】清理无效锁文件\nif [ -f \"$LOCK_FILE\" ]; then\n    LOCK_PID=$(cat \"$LOCK_FILE\" 2>/dev/null)\n    if [ -n \"$LOCK_PID\" ]; then\n        if kill -0 \"$LOCK_PID\" 2>/dev/null; then\n            echo \"错误 脚本已运行（PID $LOCK_PID）\" > \"$ERROR_LOG\"\n            exit 1\n        fi\n    fi\n    rm -f \"$LOCK_FILE\" 2>/dev/null\nfi\n\n# ==========================================\n# 工具函数：检查游戏是否在运行\n# ==========================================\n# 【环境校验 3】检查游戏是否启动\ngame_running() {\n    if [ \"$PIDOF_CMD\" = \"pidof\" ]; then\n        pidof \"$PKG\" >/dev/null 2>&1\n    else\n        pgrep -f \"$PKG\" >/dev/null 2>&1\n    fi\n}\n\n# ==========================================\n# 环境检查3：游戏是否已启动\n# ==========================================\nif ! game_running; then\n    echo \"错误 请先启动游戏\" > \"$ERROR_LOG\"\n    exit 1\nfi\n\n# ==========================================\n# 环境检查4：创建锁文件\n# 说明：防止多个脚本实例同时运行\n# ==========================================\n# 【环境校验 4】创建锁文件\necho $$ > \"$LOCK_FILE\" 2>/dev/null || {\n    echo \"错误 无法创建锁文件\" > \"$ERROR_LOG\"\n    exit 1\n}\n\n# ==========================================\n# 环境预检测：truncate命令\n# 说明：truncate是清空文件的高效方式\n# ==========================================\n# 【环境预检测】truncate 命令支持\nTRUNCATE_AVAILABLE=0\nif check_command truncate; then\n    TRUNCATE_AVAILABLE=1\nfi\n\n# ==========================================\n# 环境预检测：printf命令\n# 说明：作为truncate的备用方案\n# ==========================================\n# 【环境预检测】printf 命令支持（作为fallback）\nPRINTF_AVAILABLE=0\nif check_command printf; then\n    PRINTF_AVAILABLE=1\nfi\n\n# ==========================================\n# 运行策略配置\n# 此处参数可调整脚本性能与耗电平衡\n# ==========================================\n# --- 运行策略配置 ---\ntotal_loop=0; not_found=0; found=0; success=0; fail=0\nfast_mode=0; fast_remain=0\nstart_time=$(date +%s 2>/dev/null || echo 0)\nlast_found_time=$start_time\nmax_idle_duration=0\ndeep_sleep_count=0\n\n# ==========================================\n# 核心功能：清空文件函数\n# 说明：按优先级尝试多种方式清空文件，确保兼容\n# ==========================================\n# --- 文件清空函数（全兼容）---\nclear_file() {\n    local file=\"$1\"\n    \n    # 方式1：使用truncate（最高效）\n    if [ $TRUNCATE_AVAILABLE -eq 1 ]; then\n        if truncate -s 0 \"$file\" 2>/dev/null; then\n            return 0\n        fi\n    fi\n    \n    # 方式2：使用printf（兼容性好）\n    if [ $PRINTF_AVAILABLE -eq 1 ]; then\n        if printf '' > \"$file\" 2>/dev/null; then\n            return 0\n        fi\n    fi\n    \n    # 方式3：使用重定向（最通用，兜底）\n    if > \"$file\" 2>/dev/null; then\n        return 0\n    fi\n    \n    return 1\n}\n\n# ==========================================\n# 主循环：监控并拦截\n# 说明：游戏运行期间持续监控\n# sleep时间可调整，但会影响响应速度和耗电\n# ==========================================\n# --- 主循环 ---\nwhile game_running; do\n    total_loop=$((total_loop + 1))\n    \n    # 检查：目标文件是否存在且有内容\n    if [ -f \"$FILE\" ] && [ -s \"$FILE\" ]; then\n        found=$((found + 1))\n        \n        # 更新时间并切换到快速模式\n        last_found_time=$(date +%s 2>/dev/null || echo $start_time)\n        fast_mode=1\n        fast_remain=30\n        not_found=0\n        \n        # 执行清空\n        if clear_file \"$FILE\"; then\n            success=$((success + 1))\n        else\n            fail=$((fail + 1))\n        fi\n    else\n        not_found=$((not_found + 1))\n        \n        # 计算空闲时间\n        current_time=$(date +%s 2>/dev/null || echo $start_time)\n        idle_duration=$((current_time - last_found_time))\n        [ $idle_duration -gt $max_idle_duration ] && max_idle_duration=$idle_duration\n\n        # 策略1：空闲超过10分钟，深度休眠（省电）\n        if [ $idle_duration -ge 600 ]; then\n            sleep 8\n            deep_sleep_count=$((deep_sleep_count + 1))\n        else\n            # 策略2：快速模式（刚发现文件后）\n            if [ $fast_mode -eq 1 ] && [ $fast_remain -gt 0 ]; then\n                sleep 0.3\n                fast_remain=$((fast_remain - 1))\n                [ $fast_remain -le 0 ] && fast_mode=0\n            else\n                # 策略3：普通模式（逐步增加间隔，省电）\n                case $not_found in\n                    1) sleep 0.6 ;;\n                    2) sleep 1.2 ;;\n                    3) sleep 2.4 ;;\n                    *) sleep 5 ;;\n                esac\n            fi\n        fi\n    fi\ndone\n\n# ==========================================\n# 生成运行报告\n# 说明：游戏关闭后自动生成统计报告\n# ==========================================\n# --- 生成运行报告 ---\nend_time=$(date +%s 2>/dev/null || echo $start_time)\nduration=$((end_time - start_time))\n\nif [ $duration -lt 0 ] || [ $duration -gt 315360000 ]; then\n    duration=0\nfi\n\nmax_idle_min=$((max_idle_duration / 60))\n\ndays=$((duration / 86400))\nhours=$(( (duration % 86400) / 3600 ))\nminutes=$(( (duration % 3600) / 60 ))\nseconds=$((duration % 60))\nduration_str=\"\"\n[ $days -gt 0 ] && duration_str=\"${days}天\"\n[ $hours -gt 0 ] && duration_str=\"${duration_str}${hours}小时\"\n[ $minutes -gt 0 ] && duration_str=\"${duration_str}${minutes}分钟\"\n[ $seconds -gt 0 ] || [ -z \"$duration_str\" ] && duration_str=\"${duration_str}${seconds}秒\"\n\nfmt_start=$(format_time $start_time)\nfmt_end=$(format_time $end_time)\n\n{\necho \"运行状态：脚本已正常退出 (游戏已关闭)\"\necho \"运行周期：$fmt_start → $fmt_end\"\necho \"总运行时长：$duration_str\"\necho \"\"\necho \"📊 拦截效果统计\"\necho \"----------------------------------------\"\necho \"检测到资源请求文件：$found 次\"\necho \"成功拦截资源请求：$success 次\"\necho \"拦截异常次数：$fail 次\"\necho \"\"\necho \"🔋 设备续航优化情况\"\necho \"----------------------------------------\"\necho \"本次运行最长空闲时长：$max_idle_min 分钟\"\necho \"深度休眠触发次数：$deep_sleep_count 次（空闲≥10 分钟自动触发）\"\necho \"\"\necho \"📋 运行结果说明\"\necho \"----------------------------------------\"\nif [ $success -gt 0 ]; then\n    echo \"✅ 本次运行已成功拦截 $success 次资源请求\"\nelif [ $fail -gt 0 ]; then\n    echo \"❌ 本次运行出现拦截异常，请排查以下问题:\"\n    echo \"   1. Shizuku/Stellar 免 Root 服务是否正常运行\"\n    echo \"   2. 游戏更新后，监控的资源文件路径是否变更\"\n    echo \"   3. 脚本是否被系统后台查杀\"\nelse\n    echo \"ℹ️ 本次运行未检测到游戏资源请求\"\n    echo \"   游戏本次启动未触发外部资源加载，无需拦截\"\nfi\n} > \"$SUCCESS_LOG\" 2>/dev/null\n\n# ==========================================\n# 输出错误日志（如果有失败）\n# ==========================================\n# 错误日志精简\n[ $fail -gt 0 ] && echo \"[$fmt_end] 拦截失败 $fail 次，请检查文件权限或路径\" > \"$ERROR_LOG\"\n\n# ==========================================\n# 清理：删除锁文件\n# ==========================================\n# 清理锁文件\nrm -f \"$LOCK_FILE\" 2>/dev/null\n",
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "16e0fa3d-f49f-4c69-a459-ba75f65c70d6",
+      "indentationLevel": 0,
+      "moduleId": "vflow.logic.if.start",
+      "parameters": {
+        "operator": "匹配正则",
+        "input1": "{{dfc59fd3-b701-492f-a4c1-602d92cbceba.result}}",
+        "__error_policy": "STOP",
+        "value1": "[START_FAILED]"
+      }
+    },
+    {
+      "id": "6c89c50f-6007-4959-b26c-35676bd45a44",
+      "indentationLevel": 1,
+      "moduleId": "vflow.shizuku.shell_command",
+      "parameters": {
+        "mode": "自动",
+        "command": "#!/system/bin/sh\nsettings put system high_performance_mode_on 0\necho \"，已同步关闭高性能模式\"\n",
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "7cdce98a-9d1d-45f8-bd5f-6874d82cd4cf",
+      "indentationLevel": 1,
+      "moduleId": "vflow.device.delay",
+      "parameters": {
+        "duration": 300.0,
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "502bb02b-99e7-4348-a32e-4dccedea18dd",
+      "indentationLevel": 1,
+      "moduleId": "vflow.shizuku.shell_command",
+      "parameters": {
+        "mode": "Shizuku",
+        "command": "cat /storage/emulated/0/Download/block_error.log ",
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "1994f250-749f-4952-aa65-d9b6998e8de2",
+      "indentationLevel": 1,
+      "moduleId": "vflow.device.delay",
+      "parameters": {
+        "duration": 888.0,
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "024e27b0-6c46-4103-88d1-045e9cc643fe",
+      "indentationLevel": 1,
+      "moduleId": "vflow.data.text_extract",
+      "parameters": {
+        "text": "{{502bb02b-99e7-4348-a32e-4dccedea18dd.result}}",
+        "mode": "提取字符",
+        "start": 0.0,
+        "end": 0.0,
+        "index": 0.0,
+        "count": 3.0,
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "a23e7379-c6e2-4380-aa80-865db4f74c2d",
+      "indentationLevel": 1,
+      "moduleId": "vflow.data.text_extract",
+      "parameters": {
+        "text": "{{502bb02b-99e7-4348-a32e-4dccedea18dd.result}}",
+        "mode": "提取字符",
+        "start": 0.0,
+        "end": 0.0,
+        "index": 3.0,
+        "count": 999.0,
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "8bee0215-4970-4234-9674-6a6b1ad5734f",
+      "indentationLevel": 1,
+      "moduleId": "vflow.notification.send_notification",
+      "parameters": {
+        "title": "{{024e27b0-6c46-4103-88d1-045e9cc643fe.result}}",
+        "message": "{{a23e7379-c6e2-4380-aa80-865db4f74c2d.result}}{{6c89c50f-6007-4959-b26c-35676bd45a44.result}}",
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "dab2d103-12fe-45c7-97a4-a0de4b1199fd",
+      "indentationLevel": 1,
+      "moduleId": "vflow.logic.stop_workflow",
+      "parameters": {
+        "target": "current",
+        "workflow_id": "",
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "d733f333-753f-461a-9806-1b61fe46fc36",
+      "indentationLevel": 0,
+      "moduleId": "vflow.logic.if.middle",
+      "parameters": {}
+    },
+    {
+      "id": "59e631c2-709f-4278-9bdc-ca1a1fd48e08",
+      "indentationLevel": 1,
+      "moduleId": "vflow.shizuku.shell_command",
+      "parameters": {
+        "mode": "Shizuku",
+        "command": "#!/system/bin/sh\nsettings put system high_performance_mode_on 0\necho \"，电池已恢复均匀模式\"\n",
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "041666d6-be68-4de0-8ef8-66135cdaf1a1",
+      "indentationLevel": 1,
+      "moduleId": "vflow.device.delay",
+      "parameters": {
+        "duration": 600.0,
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "0a679831-0543-4866-9545-3814280339f7",
+      "indentationLevel": 1,
+      "moduleId": "vflow.shizuku.shell_command",
+      "parameters": {
+        "mode": "Shizuku",
+        "command": "cat /storage/emulated/0/Download/block_success.log",
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "eb60e33b-8b43-4dc6-b0df-3fbff9208607",
+      "indentationLevel": 1,
+      "moduleId": "vflow.shizuku.shell_command",
+      "parameters": {
+        "mode": "Shizuku",
+        "command": "sed -n '18p' /storage/emulated/0/Download/block_success.log | sed 's/^[^[:print:]]*//'",
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "2e5cef21-3970-49cd-8d78-fb9c3be439af",
+      "indentationLevel": 1,
+      "moduleId": "vflow.device.toast",
+      "parameters": {
+        "message": "{{eb60e33b-8b43-4dc6-b0df-3fbff9208607.result}}{{59e631c2-709f-4278-9bdc-ca1a1fd48e08.result}}",
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "dc542b4e-0059-42f1-acbb-8acce73b0495",
+      "indentationLevel": 0,
+      "moduleId": "vflow.logic.if.end",
+      "parameters": {
+        "__error_policy": "RETRY",
+        "__retry_count": 3.0,
+        "__retry_interval": 1000.0
+      }
+    },
+    {
+      "id": "97ad35b3-f9e1-421e-8c82-3f44ceea3533",
+      "indentationLevel": 0,
+      "moduleId": "vflow.logic.stop_workflow",
+      "parameters": {
+        "target": "current",
+        "workflow_id": "",
+        "__error_policy": "RETRY",
+        "__retry_count": 5.0,
+        "__retry_interval": 1000.0
+      }
+    }
+  ],
+  "isEnabled": false,
+  "isFavorite": false,
+  "wasEnabledBeforePermissionsLost": false
+}

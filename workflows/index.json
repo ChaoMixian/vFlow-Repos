@@ -1,7 +1,7 @@
 {
   "version": "1.0",
-  "last_updated": "2026-04-17T16:46:43.982665",
-  "total_count": 13,
+  "last_updated": "2026-04-18T00:56:06.876961",
+  "total_count": 15,
   "workflows": [
     {
       "id": "chong-pang-pang",
@@ -20,6 +20,25 @@
       "filename": "chong-pang-pang.json",
       "download_url": "https://raw.githubusercontent.com/ChaoMixian/vFlow-Repos/main/workflows/chong-pang-pang.json",
       "local_path": "workflows/chong-pang-pang.json"
+    },
+    {
+      "id": "dual-app-manager",
+      "name": "多开管家",
+      "description": "在指定应用启动时执行多开管家脚本，清理多开进程并处理后台保活策略。",
+      "author": "想不出名字啊喂",
+      "version": "1.0.0",
+      "vFlowLevel": 1,
+      "homepage": "",
+      "tags": [
+        "多开",
+        "进程管理",
+        "Shizuku",
+        "后台清理"
+      ],
+      "updated_at": "2026-04-07",
+      "filename": "dual-app-manager.json",
+      "download_url": "https://raw.githubusercontent.com/ChaoMixian/vFlow-Repos/main/workflows/dual-app-manager.json",
+      "local_path": "workflows/dual-app-manager.json"
     },
     {
       "id": "foton-signin",
@@ -231,6 +250,25 @@
       "filename": "wechat-send-goodmorning.json",
       "download_url": "https://raw.githubusercontent.com/ChaoMixian/vFlow-Repos/main/workflows/wechat-send-goodmorning.json",
       "local_path": "workflows/wechat-send-goodmorning.json"
+    },
+    {
+      "id": "wzry-download-blocker",
+      "name": "王者下载拦截",
+      "description": "在王者荣耀启动时执行下载资源拦截脚本，并自动处理高性能模式切换。",
+      "author": "想不出名字啊喂",
+      "version": "1.0.0",
+      "vFlowLevel": 1,
+      "homepage": "",
+      "tags": [
+        "王者荣耀",
+        "资源拦截",
+        "Shizuku",
+        "游戏"
+      ],
+      "updated_at": "2026-04-07",
+      "filename": "wzry-download-blocker.json",
+      "download_url": "https://raw.githubusercontent.com/ChaoMixian/vFlow-Repos/main/workflows/wzry-download-blocker.json",
+      "local_path": "workflows/wzry-download-blocker.json"
     }
   ]
 }
