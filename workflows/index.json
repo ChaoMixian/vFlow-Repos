@@ -1,8 +1,98 @@
 {
   "version": "1.0",
-  "last_updated": "2026-04-08T16:32:46.483361",
-  "total_count": 7,
+  "last_updated": "2026-04-18T00:46:00.763393",
+  "total_count": 13,
   "workflows": [
+    {
+      "id": "chong-pang-pang",
+      "name": "宠胖胖签到",
+      "description": "自动打开宠胖胖完成签到，并执行一次固定互动流程。",
+      "author": "〆释然 ๑🐰",
+      "version": "1.0.0",
+      "vFlowLevel": 1,
+      "homepage": "",
+      "tags": [
+        "签到",
+        "宠胖胖",
+        "自动化"
+      ],
+      "updated_at": "2026-04-17",
+      "filename": "chong-pang-pang.json",
+      "download_url": "https://raw.githubusercontent.com/ChaoMixian/vFlow-Repos/main/workflows/chong-pang-pang.json",
+      "local_path": "workflows/chong-pang-pang.json"
+    },
+    {
+      "id": "foton-signin",
+      "name": "福田汽车签到",
+      "description": "自动打开福田汽车 App 完成每日签到。",
+      "author": "〆释然 ๑🐰",
+      "version": "1.0.0",
+      "vFlowLevel": 1,
+      "homepage": "",
+      "tags": [
+        "签到",
+        "福田汽车",
+        "汽车"
+      ],
+      "updated_at": "2026-04-17",
+      "filename": "foton-signin.json",
+      "download_url": "https://raw.githubusercontent.com/ChaoMixian/vFlow-Repos/main/workflows/foton-signin.json",
+      "local_path": "workflows/foton-signin.json"
+    },
+    {
+      "id": "gac-trumpchi-signin",
+      "name": "广汽传祺签到",
+      "description": "自动打开广汽传祺 App 完成签到",
+      "author": "〆释然 ๑🐰",
+      "version": "1.1.0",
+      "vFlowLevel": 1,
+      "homepage": "",
+      "tags": [
+        "签到",
+        "广汽传祺",
+        "汽车"
+      ],
+      "updated_at": "2026-04-17",
+      "filename": "gac-trumpchi-signin.json",
+      "download_url": "https://raw.githubusercontent.com/ChaoMixian/vFlow-Repos/main/workflows/gac-trumpchi-signin.json",
+      "local_path": "workflows/gac-trumpchi-signin.json"
+    },
+    {
+      "id": "geely-auto-signin",
+      "name": "吉利汽车签到",
+      "description": "自动打开吉利汽车 App 完成每日签到。",
+      "author": "〆释然 ๑🐰",
+      "version": "1.0.0",
+      "vFlowLevel": 1,
+      "homepage": "",
+      "tags": [
+        "签到",
+        "吉利汽车",
+        "汽车"
+      ],
+      "updated_at": "2026-04-17",
+      "filename": "geely-auto-signin.json",
+      "download_url": "https://raw.githubusercontent.com/ChaoMixian/vFlow-Repos/main/workflows/geely-auto-signin.json",
+      "local_path": "workflows/geely-auto-signin.json"
+    },
+    {
+      "id": "geely-galaxy-signin",
+      "name": "吉利银河签到",
+      "description": "自动打开吉利银河 App 完成每日签到。",
+      "author": "〆释然 ๑🐰",
+      "version": "1.0.0",
+      "vFlowLevel": 1,
+      "homepage": "",
+      "tags": [
+        "签到",
+        "吉利银河",
+        "汽车"
+      ],
+      "updated_at": "2026-04-17",
+      "filename": "geely-galaxy-signin.json",
+      "download_url": "https://raw.githubusercontent.com/ChaoMixian/vFlow-Repos/main/workflows/geely-galaxy-signin.json",
+      "local_path": "workflows/geely-galaxy-signin.json"
+    },
     {
       "id": "gkd-example",
       "name": "GKD",
@@ -54,6 +144,25 @@
       "filename": "ithome-signin.json",
       "download_url": "https://raw.githubusercontent.com/ChaoMixian/vFlow-Repos/main/workflows/ithome-signin.json",
       "local_path": "workflows/ithome-signin.json"
+    },
+    {
+      "id": "kuaishou-lucky-bag-no-share",
+      "name": "快手福袋（不分享直播间）",
+      "description": "在快手直播间自动点击福袋并参与抽奖，不执行分享直播间步骤。",
+      "author": "〆释然 ๑🐰",
+      "version": "1.0.0",
+      "vFlowLevel": 1,
+      "homepage": "",
+      "tags": [
+        "快手",
+        "福袋",
+        "抽奖",
+        "手动触发"
+      ],
+      "updated_at": "2026-04-17",
+      "filename": "kuaishou-lucky-bag-no-share.json",
+      "download_url": "https://raw.githubusercontent.com/ChaoMixian/vFlow-Repos/main/workflows/kuaishou-lucky-bag-no-share.json",
+      "local_path": "workflows/kuaishou-lucky-bag-no-share.json"
     },
     {
       "id": "oneplus-bypass-charge",

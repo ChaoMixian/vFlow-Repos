@@ -1,0 +1,169 @@
+{
+  "_meta": {
+    "id": "geely-galaxy-signin",
+    "name": "吉利银河签到",
+    "version": "1.0.0",
+    "vFlowLevel": 1,
+    "description": "自动打开吉利银河 App 完成每日签到。",
+    "author": "〆释然 ๑🐰",
+    "homepage": "",
+    "tags": [
+      "签到",
+      "吉利银河",
+      "汽车"
+    ],
+    "updated_at": "2026-04-17"
+  },
+  "id": "b8d000d2-8ab5-4f78-b228-723c0cc6c870",
+  "name": "吉利银河签到",
+  "triggers": [
+    {
+      "id": "327c91a4-d3e8-4272-8707-8ee4e3ce0c43",
+      "indentationLevel": 0,
+      "moduleId": "vflow.trigger.time",
+      "parameters": {
+        "time": "04:00",
+        "days": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0
+        ],
+        "__error_policy": "STOP"
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "a782eb04-de66-4b0d-83a7-623e46f3e8fe",
+      "indentationLevel": 0,
+      "moduleId": "vflow.system.wake_and_unlock_screen",
+      "parameters": {
+        "unlock_password": "960321",
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "bcb4d2dc-6211-4dce-ac8a-9bb3a0c9a359",
+      "indentationLevel": 0,
+      "moduleId": "vflow.device.delay",
+      "parameters": {
+        "duration": 3000.0,
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "87f8fab2-0d85-4edb-9f08-554bb0543701",
+      "indentationLevel": 0,
+      "moduleId": "vflow.system.launch_app",
+      "parameters": {
+        "packageName": "com.geely.consumer",
+        "activityName": "LAUNCH",
+        "useAdb": false,
+        "userId": 0.0,
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "3234afc5-01f2-4c6e-868a-cf0490d2b8b5",
+      "indentationLevel": 0,
+      "moduleId": "vflow.device.delay",
+      "parameters": {
+        "duration": 5000.0,
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "721c7dff-4db1-4169-bfd4-2797ff516941",
+      "indentationLevel": 0,
+      "moduleId": "vflow.interaction.find_image",
+      "parameters": {
+        "template_uri": "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",
+        "threshold": "threshold_80",
+        "output_format": "coordinate",
+        "screenshot_uri": "",
+        "__error_policy": "RETRY",
+        "__retry_count": 3.0,
+        "__retry_interval": 1000.0
+      }
+    },
+    {
+      "id": "7c398464-56b7-41a5-bce8-8df44f0f0f04",
+      "indentationLevel": 0,
+      "moduleId": "vflow.device.delay",
+      "parameters": {
+        "duration": 1000.0,
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "ed332093-99bb-4f97-912a-7e208d742839",
+      "indentationLevel": 0,
+      "moduleId": "vflow.device.click",
+      "parameters": {
+        "target": "{{721c7dff-4db1-4169-bfd4-2797ff516941.first_result}}",
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "0ca54c13-e18d-446b-abe4-5f2f37371243",
+      "indentationLevel": 0,
+      "moduleId": "vflow.device.delay",
+      "parameters": {
+        "duration": 3000.0,
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "afb4a424-e9a6-4a92-8d81-5ae5da3e1d18",
+      "indentationLevel": 0,
+      "moduleId": "vflow.device.click",
+      "parameters": {
+        "target": "955,2351",
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "9969803b-c86d-455a-9430-d78f8d295137",
+      "indentationLevel": 0,
+      "moduleId": "vflow.device.delay",
+      "parameters": {
+        "duration": 3000.0,
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "2f5b1ec0-73de-4c40-9eda-edd00a89143f",
+      "indentationLevel": 0,
+      "moduleId": "vflow.device.click",
+      "parameters": {
+        "target": "com.geelygalaxy.customer:id/tv_mine_sign_bg",
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "b5708186-2a12-4a9c-acaf-8d981f5912e9",
+      "indentationLevel": 0,
+      "moduleId": "vflow.device.delay",
+      "parameters": {
+        "duration": 3000.0,
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "5e1668b6-898d-4bd4-a730-e16113b14bf6",
+      "indentationLevel": 0,
+      "moduleId": "vflow.core.force_stop_app",
+      "parameters": {
+        "package_name": "com.geelygalaxy.customer",
+        "__error_policy": "STOP"
+      }
+    }
+  ],
+  "isEnabled": false,
+  "isFavorite": false,
+  "wasEnabledBeforePermissionsLost": false
+}

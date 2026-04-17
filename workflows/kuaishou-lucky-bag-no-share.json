@@ -1,0 +1,94 @@
+{
+  "_meta": {
+    "id": "kuaishou-lucky-bag-no-share",
+    "name": "快手福袋（不分享直播间）",
+    "version": "1.0.0",
+    "vFlowLevel": 1,
+    "description": "在快手直播间自动点击福袋并参与抽奖，不执行分享直播间步骤。",
+    "author": "〆释然 ๑🐰",
+    "homepage": "",
+    "tags": [
+      "快手",
+      "福袋",
+      "抽奖",
+      "手动触发"
+    ],
+    "updated_at": "2026-04-17"
+  },
+  "id": "d5b5a21c-9ce2-4913-86c5-8394f8f03e9a",
+  "name": "快手福袋（不分享直播间）",
+  "triggers": [
+    {
+      "id": "afbae389-750e-40f7-ad3d-3aee7025e4d3",
+      "indentationLevel": 0,
+      "moduleId": "vflow.trigger.manual",
+      "parameters": {}
+    }
+  ],
+  "steps": [
+    {
+      "id": "71ce5fa4-78b5-4f76-8cb4-06307841cbbe",
+      "indentationLevel": 0,
+      "moduleId": "vflow.interaction.find_image",
+      "parameters": {
+        "template_uri": "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",
+        "threshold": "threshold_80",
+        "output_format": "coordinate",
+        "screenshot_uri": "",
+        "__error_policy": "RETRY",
+        "__retry_count": 10.0,
+        "__retry_interval": 1000.0
+      }
+    },
+    {
+      "id": "2dc6273f-a47b-4939-9f22-3566f76c72f3",
+      "indentationLevel": 0,
+      "moduleId": "vflow.device.delay",
+      "parameters": {
+        "duration": 5000.0,
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "190d0e57-f114-4bf5-8266-7fc2fa8385e0",
+      "indentationLevel": 0,
+      "moduleId": "vflow.device.click",
+      "parameters": {
+        "target": "{{71ce5fa4-78b5-4f76-8cb4-06307841cbbe.first_result}}",
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "ddd80d24-dc75-4e93-8ee0-3c64c2060d9b",
+      "indentationLevel": 0,
+      "moduleId": "vflow.device.delay",
+      "parameters": {
+        "duration": 5000.0,
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "c02ff0af-bbcb-4fb0-bfc6-1641e80f6866",
+      "indentationLevel": 0,
+      "moduleId": "vflow.device.find.text",
+      "parameters": {
+        "matchMode": "exact",
+        "targetText": "发送评论 参与抽奖",
+        "outputFormat": "coordinate",
+        "__error_policy": "STOP"
+      }
+    },
+    {
+      "id": "5132db8f-334a-46fb-aa13-18d9eb1191ca",
+      "indentationLevel": 0,
+      "moduleId": "vflow.device.click",
+      "parameters": {
+        "target": "{{c02ff0af-bbcb-4fb0-bfc6-1641e80f6866.first_result}}",
+        "__error_policy": "STOP"
+      }
+    }
+  ],
+  "isEnabled": false,
+  "isFavorite": false,
+  "wasEnabledBeforePermissionsLost": false
+}
