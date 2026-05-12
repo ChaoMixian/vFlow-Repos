@@ -29,25 +29,35 @@ def validate_workflow(data, filename):
     验证工作流数据
     返回: (is_valid, error_message, cleaned_data)
     """
-    # 检查是否有_meta
-    if '_meta' not in data:
-        return False, f"缺少 '_meta' 字段", None
-
-    meta = data['_meta']
-
-    # 验证_meta必需字段
-    required_meta_fields = ['id', 'name', 'description', 'author', 'version', 'vFlowLevel']
-    missing_fields = [field for field in required_meta_fields if field not in meta]
+    required_fields = ['name', 'description', 'author', 'version', 'vFlowLevel']
+    missing_fields = [field for field in required_fields if field not in data]
 
     if missing_fields:
-        return False, f"_meta缺少必需字段: {', '.join(missing_fields)}", None
+        return False, f"缺少必需字段: {', '.join(missing_fields)}", None
 
-    # 验证_meta中的ID与文件名一致
-    expected_id = normalize_workflow_id(filename)
-    meta_id = meta['id']
+    for field in required_fields:
+        value = data.get(field)
+        if value is None:
+            return False, f"字段 '{field}' 不能为 null", None
 
-    if meta_id != expected_id:
-        return False, f"_meta.id 不匹配: 文件名='{expected_id}', _meta.id='{meta_id}'", None
+    if not isinstance(data.get('name'), str) or not data.get('name', '').strip():
+        return False, "字段 'name' 必须是非空字符串", None
+    if not isinstance(data.get('description'), str) or not data.get('description', '').strip():
+        return False, "字段 'description' 必须是非空字符串", None
+    if not isinstance(data.get('version'), str) or not data.get('version', '').strip():
+        return False, "字段 'version' 必须是非空字符串", None
+    if not isinstance(data.get('vFlowLevel'), int):
+        return False, "字段 'vFlowLevel' 必须是整数", None
+    if not isinstance(data.get('author'), str) or not data.get('author', '').strip():
+        return False, "字段 'author' 必须是非空字符串", None
+
+    tags = data.get('tags')
+    if tags is not None and not isinstance(tags, list):
+        return False, "字段 'tags' 必须是数组", None
+
+    homepage = data.get('homepage')
+    if homepage is not None and not isinstance(homepage, str):
+        return False, "字段 'homepage' 必须是字符串", None
 
     return True, None, data
 
@@ -56,7 +66,6 @@ def clean_workflow_for_repo(data):
     """
     清理工作流数据，准备发布到仓库
     - 将isEnabled、isFavorite、wasEnabledBeforePermissionsLost设置为false
-    - 保留_meta信息
     """
     cleaned = data.copy()
 
@@ -101,23 +110,25 @@ def scan_workflows_directory(directory_path):
                 skipped_files.append(filepath.name)
                 continue
 
-            # 提取元数据
-            meta = data.get('_meta', {})
-
             # 清理工作流数据（保存到仓库的版本）
             cleaned_workflow = clean_workflow_for_repo(data)
+            workflow_id = normalize_workflow_id(filepath.name)
+            updated_at = ''
+            modified_at = cleaned_workflow.get('modifiedAt')
+            if isinstance(modified_at, (int, float)) and modified_at > 0:
+                updated_at = datetime.fromtimestamp(modified_at / 1000).strftime('%Y-%m-%d')
 
             # 构建索引条目
             item = {
-                'id': meta.get('id', normalize_workflow_id(filepath.name)),
-                'name': meta.get('name', '未命名'),
-                'description': meta.get('description', ''),
-                'author': meta.get('author', '未知'),
-                'version': meta.get('version', '1.0.0'),
-                'vFlowLevel': meta.get('vFlowLevel', 1),
-                'homepage': meta.get('homepage', ''),
-                'tags': meta.get('tags', []),
-                'updated_at': meta.get('updated_at', ''),
+                'id': workflow_id,
+                'name': cleaned_workflow.get('name', '未命名'),
+                'description': cleaned_workflow.get('description', ''),
+                'author': cleaned_workflow.get('author', '未知'),
+                'version': cleaned_workflow.get('version', '1.0.0'),
+                'vFlowLevel': cleaned_workflow.get('vFlowLevel', 1),
+                'homepage': cleaned_workflow.get('homepage', ''),
+                'tags': cleaned_workflow.get('tags', []),
+                'updated_at': updated_at,
                 'filename': filepath.name,
                 # 构建下载URL
                 'download_url': f"https://raw.githubusercontent.com/ChaoMixian/vFlow-Repos/main/workflows/{filepath.name}",

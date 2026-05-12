@@ -1,20 +1,4 @@
 {
-  "_meta": {
-    "id": "dual-app-manager",
-    "name": "多开管家",
-    "version": "1.0.0",
-    "vFlowLevel": 1,
-    "description": "在指定应用启动时执行多开管家脚本，清理多开进程并处理后台保活策略。",
-    "author": "想不出名字啊喂",
-    "homepage": "",
-    "tags": [
-      "多开",
-      "进程管理",
-      "Shizuku",
-      "后台清理"
-    ],
-    "updated_at": "2026-04-07"
-  },
   "id": "f08303bd-237c-4a86-ae74-49f23f5f8f8c",
   "name": "多开管家",
   "triggers": [
@@ -48,5 +32,17 @@
   ],
   "isEnabled": false,
   "isFavorite": false,
-  "wasEnabledBeforePermissionsLost": false
+  "wasEnabledBeforePermissionsLost": false,
+  "version": "1.0.0",
+  "vFlowLevel": 1,
+  "description": "在指定应用启动时执行多开管家脚本，清理多开进程并处理后台保活策略。",
+  "author": "想不出名字啊喂",
+  "homepage": "",
+  "tags": [
+    "多开",
+    "进程管理",
+    "Shizuku",
+    "后台清理"
+  ],
+  "modifiedAt": 1775520000000
 }

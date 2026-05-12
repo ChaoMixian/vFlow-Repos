@@ -1,19 +1,4 @@
 {
-  "_meta": {
-    "id": "geely-galaxy-signin",
-    "name": "吉利银河签到",
-    "version": "1.0.0",
-    "vFlowLevel": 1,
-    "description": "自动打开吉利银河 App 完成每日签到。",
-    "author": "〆释然 ๑🐰",
-    "homepage": "",
-    "tags": [
-      "签到",
-      "吉利银河",
-      "汽车"
-    ],
-    "updated_at": "2026-04-17"
-  },
   "id": "b8d000d2-8ab5-4f78-b228-723c0cc6c870",
   "name": "吉利银河签到",
   "triggers": [
@@ -165,5 +150,16 @@
   ],
   "isEnabled": false,
   "isFavorite": false,
-  "wasEnabledBeforePermissionsLost": false
+  "wasEnabledBeforePermissionsLost": false,
+  "version": "1.0.0",
+  "vFlowLevel": 1,
+  "description": "自动打开吉利银河 App 完成每日签到。",
+  "author": "〆释然 ๑🐰",
+  "homepage": "",
+  "tags": [
+    "签到",
+    "吉利银河",
+    "汽车"
+  ],
+  "modifiedAt": 1776384000000
 }

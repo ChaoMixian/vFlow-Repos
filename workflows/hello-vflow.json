@@ -1,18 +1,4 @@
 {
-  "_meta": {
-    "id": "hello-vflow",
-    "name": "Hello vFlow",
-    "version": "1.0.0",
-    "vFlowLevel": 1,
-    "description": "用于vFlow-Repos测试的工作流",
-    "author": "ChaoMixian",
-    "homepage": "https://github.com/ChaoMixian",
-    "tags": [
-      "toast",
-      "测试"
-    ],
-    "updated_at": "2026-01-10"
-  },
   "id": "9aa4743f-1564-4640-9906-e3c31eebc3db",
   "isEnabled": false,
   "isFavorite": false,
@@ -41,5 +27,15 @@
       }
     }
   ],
-  "wasEnabledBeforePermissionsLost": false
+  "wasEnabledBeforePermissionsLost": false,
+  "version": "1.0.0",
+  "vFlowLevel": 1,
+  "description": "用于vFlow-Repos测试的工作流",
+  "author": "ChaoMixian",
+  "homepage": "https://github.com/ChaoMixian",
+  "tags": [
+    "toast",
+    "测试"
+  ],
+  "modifiedAt": 1768003200000
 }

@@ -1,20 +1,4 @@
 {
-  "_meta": {
-    "id": "wzry-download-blocker",
-    "name": "王者下载拦截",
-    "version": "1.0.0",
-    "vFlowLevel": 1,
-    "description": "在王者荣耀启动时执行下载资源拦截脚本，并自动处理高性能模式切换。",
-    "author": "想不出名字啊喂",
-    "homepage": "",
-    "tags": [
-      "王者荣耀",
-      "资源拦截",
-      "Shizuku",
-      "游戏"
-    ],
-    "updated_at": "2026-04-07"
-  },
   "id": "b889cc30-7c21-48f9-87f5-b0b2c60a1c68",
   "name": "王者下载拦截",
   "triggers": [
@@ -246,5 +230,17 @@
   ],
   "isEnabled": false,
   "isFavorite": false,
-  "wasEnabledBeforePermissionsLost": false
+  "wasEnabledBeforePermissionsLost": false,
+  "version": "1.0.0",
+  "vFlowLevel": 1,
+  "description": "在王者荣耀启动时执行下载资源拦截脚本，并自动处理高性能模式切换。",
+  "author": "想不出名字啊喂",
+  "homepage": "",
+  "tags": [
+    "王者荣耀",
+    "资源拦截",
+    "Shizuku",
+    "游戏"
+  ],
+  "modifiedAt": 1775520000000
 }

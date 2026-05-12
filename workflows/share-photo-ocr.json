@@ -1,17 +1,4 @@
 {
-  "_meta": {
-    "id": "share-photo-ocr",
-    "name": "分享图片OCR",
-    "version": "1.0.0",
-    "vFlowLevel": 1,
-    "description": "当通过分享功能接收到图片时，自动对图片中的文字进行OCR识别，并将识别结果展示出来。",
-    "author": "ChaoMixian",
-    "homepage": "https://github.com/ChaoMixian",
-    "tags": [
-      "OCR"
-    ],
-    "updated_at": "2026-01-13"
-  },
   "id": "3d788d72-f50f-4ce5-9a8a-9d6818906622",
   "isEnabled": false,
   "isFavorite": false,
@@ -55,5 +42,14 @@
     "__error_policy": "STOP",
     "type": "vflow.trigger.share"
   },
-  "wasEnabledBeforePermissionsLost": false
+  "wasEnabledBeforePermissionsLost": false,
+  "version": "1.0.0",
+  "vFlowLevel": 1,
+  "description": "当通过分享功能接收到图片时，自动对图片中的文字进行OCR识别，并将识别结果展示出来。",
+  "author": "ChaoMixian",
+  "homepage": "https://github.com/ChaoMixian",
+  "tags": [
+    "OCR"
+  ],
+  "modifiedAt": 1768262400000
 }

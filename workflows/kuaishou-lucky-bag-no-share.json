@@ -1,20 +1,4 @@
 {
-  "_meta": {
-    "id": "kuaishou-lucky-bag-no-share",
-    "name": "快手福袋（不分享直播间）",
-    "version": "1.0.0",
-    "vFlowLevel": 1,
-    "description": "在快手直播间自动点击福袋并参与抽奖，不执行分享直播间步骤。",
-    "author": "〆释然 ๑🐰",
-    "homepage": "",
-    "tags": [
-      "快手",
-      "福袋",
-      "抽奖",
-      "手动触发"
-    ],
-    "updated_at": "2026-04-17"
-  },
   "id": "d5b5a21c-9ce2-4913-86c5-8394f8f03e9a",
   "name": "快手福袋（不分享直播间）",
   "triggers": [
@@ -90,5 +74,17 @@
   ],
   "isEnabled": false,
   "isFavorite": false,
-  "wasEnabledBeforePermissionsLost": false
+  "wasEnabledBeforePermissionsLost": false,
+  "version": "1.0.0",
+  "vFlowLevel": 1,
+  "description": "在快手直播间自动点击福袋并参与抽奖，不执行分享直播间步骤。",
+  "author": "〆释然 ๑🐰",
+  "homepage": "",
+  "tags": [
+    "快手",
+    "福袋",
+    "抽奖",
+    "手动触发"
+  ],
+  "modifiedAt": 1776384000000
 }

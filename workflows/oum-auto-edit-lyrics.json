@@ -1,17 +1,4 @@
 {
-  "_meta": {
-    "id": "oum-auto-edit-lyrics",
-    "name": "OpenUtau-Mobile-自动填词",
-    "version": "1.0.0",
-    "vFlowLevel": 1,
-    "description": "可以给OpenUtau-Mobile自动填词",
-    "author": "Polar_Cat",
-    "homepage": "https://github.com/ChaoMixian",
-    "tags": [
-      "自动化"
-    ],
-    "updated_at": "2026-02-23"
-  },
   "folder": {
     "createdAt": 1770537390910,
     "id": "c356a0c5-2207-4202-a89d-6ffcf91a2bda",
@@ -419,5 +406,15 @@
   ],
   "isEnabled": false,
   "isFavorite": false,
-  "wasEnabledBeforePermissionsLost": false
+  "wasEnabledBeforePermissionsLost": false,
+  "name": "OpenUtau-Mobile-自动填词",
+  "version": "1.0.0",
+  "vFlowLevel": 1,
+  "description": "可以给OpenUtau-Mobile自动填词",
+  "author": "Polar_Cat",
+  "homepage": "https://github.com/ChaoMixian",
+  "tags": [
+    "自动化"
+  ],
+  "modifiedAt": 1771804800000
 }

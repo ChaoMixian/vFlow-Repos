@@ -1,19 +1,4 @@
 {
-  "_meta": {
-    "id": "oneplus-bypass-charge",
-    "name": "一加自动启用旁路充电",
-    "version": "1.0.0",
-    "vFlowLevel": 1,
-    "description": "充电时自动通过 Shizuku 启用一加旁路充电",
-    "author": "Artifical0",
-    "homepage": "",
-    "tags": [
-      "一加",
-      "旁路充电",
-      "充电"
-    ],
-    "updated_at": "2026-03-21"
-  },
   "id": "729e4cb9-125a-44d3-beae-6281ba9e3d72",
   "isEnabled": false,
   "isFavorite": false,
@@ -44,5 +29,16 @@
     "__error_policy": "STOP",
     "type": "vflow.trigger.power"
   },
-  "wasEnabledBeforePermissionsLost": false
+  "wasEnabledBeforePermissionsLost": false,
+  "version": "1.0.0",
+  "vFlowLevel": 1,
+  "description": "充电时自动通过 Shizuku 启用一加旁路充电",
+  "author": "Artifical0",
+  "homepage": "",
+  "tags": [
+    "一加",
+    "旁路充电",
+    "充电"
+  ],
+  "modifiedAt": 1774051200000
 }

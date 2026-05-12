@@ -1,19 +1,4 @@
 {
-  "_meta": {
-    "id": "gkd-example",
-    "name": "GKD",
-    "version": "1.0.0",
-    "vFlowLevel": 1,
-    "description": "可作为 GKD 使用，自动执行点击操作。完全兼容 GKD 订阅规则",
-    "author": "ChaoMixian",
-    "homepage": "https://github.com/ChaoMixian",
-    "tags": [
-      "GKD",
-      "广告",
-      "AD"
-    ],
-    "updated_at": "2026-01-23"
-  },
   "id": "299a6c45-c047-4870-ac5b-091492b0c0ef",
   "isEnabled": false,
   "isFavorite": false,
@@ -73,5 +58,16 @@
     "subscriptionUrl": "修改我",
     "type": "vflow.trigger.gkd"
   },
-  "wasEnabledBeforePermissionsLost": false
+  "wasEnabledBeforePermissionsLost": false,
+  "version": "1.0.0",
+  "vFlowLevel": 1,
+  "description": "可作为 GKD 使用，自动执行点击操作。完全兼容 GKD 订阅规则",
+  "author": "ChaoMixian",
+  "homepage": "https://github.com/ChaoMixian",
+  "tags": [
+    "GKD",
+    "广告",
+    "AD"
+  ],
+  "modifiedAt": 1769126400000
 }

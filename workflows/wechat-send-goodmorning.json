@@ -1,19 +1,4 @@
 {
-  "_meta": {
-    "id": "wechat-send-goodmorning",
-    "name": "发送早安",
-    "version": "1.0.0",
-    "vFlowLevel": 1,
-    "description": "每天定时发送早安消息给微信好友，包含恋爱天数、生日倒计时等信息",
-    "author": "Artifical0",
-    "homepage": "",
-    "tags": [
-      "微信",
-      "定时",
-      "早安"
-    ],
-    "updated_at": "2026-03-21"
-  },
   "id": "0d8a84fd-561b-4553-894f-09c51bd0ad99",
   "isEnabled": false,
   "isFavorite": false,
@@ -126,5 +111,16 @@
     "days": [],
     "type": "vflow.trigger.time"
   },
-  "wasEnabledBeforePermissionsLost": false
+  "wasEnabledBeforePermissionsLost": false,
+  "version": "1.0.0",
+  "vFlowLevel": 1,
+  "description": "每天定时发送早安消息给微信好友，包含恋爱天数、生日倒计时等信息",
+  "author": "Artifical0",
+  "homepage": "",
+  "tags": [
+    "微信",
+    "定时",
+    "早安"
+  ],
+  "modifiedAt": 1774051200000
 }

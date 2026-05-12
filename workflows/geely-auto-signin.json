@@ -1,19 +1,4 @@
 {
-  "_meta": {
-    "id": "geely-auto-signin",
-    "name": "吉利汽车签到",
-    "version": "1.0.0",
-    "vFlowLevel": 1,
-    "description": "自动打开吉利汽车 App 完成每日签到。",
-    "author": "〆释然 ๑🐰",
-    "homepage": "",
-    "tags": [
-      "签到",
-      "吉利汽车",
-      "汽车"
-    ],
-    "updated_at": "2026-04-17"
-  },
   "id": "1efda6d4-84e9-4b51-8201-bbdf4a4d5eae",
   "name": "吉利汽车签到",
   "triggers": [
@@ -282,5 +267,16 @@
   ],
   "isEnabled": false,
   "isFavorite": false,
-  "wasEnabledBeforePermissionsLost": false
+  "wasEnabledBeforePermissionsLost": false,
+  "version": "1.0.0",
+  "vFlowLevel": 1,
+  "description": "自动打开吉利汽车 App 完成每日签到。",
+  "author": "〆释然 ๑🐰",
+  "homepage": "",
+  "tags": [
+    "签到",
+    "吉利汽车",
+    "汽车"
+  ],
+  "modifiedAt": 1776384000000
 }

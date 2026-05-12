@@ -1,21 +1,6 @@
 {
-  "_meta": {
-    "id": "gac-trumpchi-signin",
-    "name": "广汽传祺签到",
-    "version": "1.1.0",
-    "vFlowLevel": 1,
-    "description": "自动打开广汽传祺 App 完成签到",
-    "author": "〆释然 ๑🐰",
-    "homepage": "",
-    "tags": [
-      "签到",
-      "广汽传祺",
-      "汽车"
-    ],
-    "updated_at": "2026-04-17"
-  },
   "id": "7f15e68b-0821-443e-a484-95e92f5b2e38",
-  "name": "广汽传祺26.4.17",
+  "name": "广汽传祺签到",
   "triggers": [
     {
       "id": "c60c620d-be60-4a0e-809a-35e93a96e166",
@@ -427,5 +412,16 @@
   ],
   "isEnabled": false,
   "isFavorite": false,
-  "wasEnabledBeforePermissionsLost": false
+  "wasEnabledBeforePermissionsLost": false,
+  "version": "1.1.0",
+  "vFlowLevel": 1,
+  "description": "自动打开广汽传祺 App 完成签到",
+  "author": "〆释然 ๑🐰",
+  "homepage": "",
+  "tags": [
+    "签到",
+    "广汽传祺",
+    "汽车"
+  ],
+  "modifiedAt": 1776384000000
 }

@@ -1,19 +1,4 @@
 {
-  "_meta": {
-    "id": "foton-signin",
-    "name": "福田汽车签到",
-    "version": "1.0.0",
-    "vFlowLevel": 1,
-    "description": "自动打开福田汽车 App 完成每日签到。",
-    "author": "〆释然 ๑🐰",
-    "homepage": "",
-    "tags": [
-      "签到",
-      "福田汽车",
-      "汽车"
-    ],
-    "updated_at": "2026-04-17"
-  },
   "id": "3791fab8-b997-453b-accd-abeefad796a4",
   "name": "福田汽车签到",
   "triggers": [
@@ -215,5 +200,16 @@
   ],
   "isEnabled": false,
   "isFavorite": false,
-  "wasEnabledBeforePermissionsLost": false
+  "wasEnabledBeforePermissionsLost": false,
+  "version": "1.0.0",
+  "vFlowLevel": 1,
+  "description": "自动打开福田汽车 App 完成每日签到。",
+  "author": "〆释然 ๑🐰",
+  "homepage": "",
+  "tags": [
+    "签到",
+    "福田汽车",
+    "汽车"
+  ],
+  "modifiedAt": 1776384000000
 }

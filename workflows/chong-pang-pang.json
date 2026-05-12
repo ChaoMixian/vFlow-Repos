@@ -1,21 +1,6 @@
 {
-  "_meta": {
-    "id": "chong-pang-pang",
-    "name": "宠胖胖签到",
-    "version": "1.0.0",
-    "vFlowLevel": 1,
-    "description": "自动打开宠胖胖完成签到，并执行一次固定互动流程。",
-    "author": "〆释然 ๑🐰",
-    "homepage": "",
-    "tags": [
-      "签到",
-      "宠胖胖",
-      "自动化"
-    ],
-    "updated_at": "2026-04-17"
-  },
   "id": "fe08bd20-5e80-44fd-bade-cbe4515b84c7",
-  "name": "宠胖胖",
+  "name": "宠胖胖签到",
   "triggers": [
     {
       "id": "d326cdfb-bdc4-466f-b6b3-226ce18ab25f",
@@ -985,5 +970,16 @@
   ],
   "isEnabled": false,
   "isFavorite": false,
-  "wasEnabledBeforePermissionsLost": false
+  "wasEnabledBeforePermissionsLost": false,
+  "version": "1.0.0",
+  "vFlowLevel": 1,
+  "description": "自动打开宠胖胖完成签到，并执行一次固定互动流程。",
+  "author": "〆释然 ๑🐰",
+  "homepage": "",
+  "tags": [
+    "签到",
+    "宠胖胖",
+    "自动化"
+  ],
+  "modifiedAt": 1776384000000
 }
